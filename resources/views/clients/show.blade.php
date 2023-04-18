@@ -24,7 +24,7 @@
                             </form>
                         </div>
                     </div>
-                    <h2>Orders</h2>
+                    <h2>Accounts</h2>
                     <ul class="list-group">
                         @forelse($client->account as $account)
                         <li class="list-group-item">

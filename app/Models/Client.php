@@ -12,11 +12,10 @@ class Client extends Model
     public $timestamps = false;
     
     const SORT = [
-        // 'default' => 'No sort',
-        'name_asc' => 'By name A-Z',
-        'name_desc' => 'By name Z-A',
+        
         'surname_asc' => 'By surname A-Z',
         'surname_desc' => 'By surname Z-A',
+        'default' => 'No sort'
     ];
 
     const PER = [

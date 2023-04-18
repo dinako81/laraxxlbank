@@ -10,14 +10,7 @@
                 </div>
                 <div class="card-body">
                     <form action="{{route('accounts-store')}}" method="post">
-                        <div class="mb-3">
-                            {{$client->name}}
-                            <div class="form-text">Client name</div>
-                        </div>
-                        <div class="mb-3">
-                            {{$client->surname}}
-                            <div class="form-text">Client surname</div>
-                        </div>
+
                         <div class="mb-3">
                             <label class="form-label">Client</label>
                             <select class="form-select" name="client_id">
@@ -28,6 +21,12 @@
                                 @endforeach
                             </select>
                             <div class="form-text">Please select client</div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Account number</label>
+                                <input readonly type="text" class="form-control brown" name="acc_number" value="<?= $acc_number ?>">
+                            </div>
+
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                         @csrf

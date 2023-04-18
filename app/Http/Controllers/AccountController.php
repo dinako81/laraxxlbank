@@ -27,9 +27,12 @@ class AccountController extends Controller
 
         $id = $request->id ?? 0;
         
+        $acc_number = 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
+
         return view('accounts.create', [
             'clients' => $clients,
-            'id' => $id
+            'id' => $id,
+            'acc_number' => $acc_number
         ]);
     }
 
@@ -52,7 +55,7 @@ class AccountController extends Controller
     }
 
 
-    public function edit(account $account)
+    public function edit(Account $account)
     {
         return view('accounts.edit', [
             'account' => $account
@@ -60,7 +63,7 @@ class AccountController extends Controller
     }
 
 
-    public function update(Request $request, account $account)
+    public function update(Request $request, Account $account)
     {
         $account->update([
             'title' => $request->title,
@@ -74,7 +77,7 @@ class AccountController extends Controller
     }
 
 
-    public function destroy(account $account)
+    public function destroy(Account $account)
     {
         $account->delete();
         return redirect()

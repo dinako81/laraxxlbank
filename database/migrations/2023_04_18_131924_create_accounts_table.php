@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('acc_number', 100);
             $table->unsignedBigInteger('client_id'); //rysys su kita lentele
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\ClientController as CL;
 use App\Http\Controllers\FundsController as F;
-use App\Http\Controllers\OrderController as ORD;
 use App\Http\Controllers\AccountController as A;
 
 
@@ -53,11 +52,11 @@ Route::prefix('clients')->name('clients-')->group(function () {
 });
 
 Route::prefix('accounts')->name('accounts-')->group(function () {
-    Route::get('/', [ORD::class, 'index'])->name('index');
-    Route::get('/create', [ORD::class, 'create'])->name('create');
-    Route::post('/create', [ORD::class, 'store'])->name('store');
-    Route::get('/{account}', [ORD::class, 'show'])->name('show');
-    Route::get('/edit/{account}', [ORD::class, 'edit'])->name('edit');
-    Route::put('/edit/{account}', [ORD::class, 'update'])->name('update');
-    Route::delete('/delete/{account}', [ORD::class, 'destroy'])->name('delete');
+    Route::get('/', [A::class, 'index'])->name('index');
+    Route::get('/create', [A::class, 'create'])->name('create');
+    Route::post('/create', [A::class, 'store'])->name('store');
+    Route::get('/{account}', [A::class, 'show'])->name('show');
+    Route::get('/edit/{account}', [A::class, 'edit'])->name('edit');
+    Route::put('/edit/{account}', [A::class, 'update'])->name('update');
+    Route::delete('/delete/{account}', [A::class, 'destroy'])->name('delete');
 });
