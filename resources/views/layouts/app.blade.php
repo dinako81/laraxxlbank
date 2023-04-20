@@ -44,10 +44,10 @@
 
                             <div class="dropdown-menu dropdown-menu-end brown" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('clients-index') }}">
-                                    Client list
+                                    Klientų sąrašas
                                 </a>
                                 <a class="dropdown-item" href="{{ route('clients-create') }}">
-                                    New client
+                                    Naujas klientas
                                 </a>
                             </div>
                         </li>
@@ -59,12 +59,16 @@
 
                             <div class="dropdown-menu dropdown-menu-end brown" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('accounts-index') }}">
-                                    Accounts list
+                                    Sąskaitų sąrašas
                                 </a>
                                 <a class="dropdown-item" href="{{ route('accounts-create') }}">
-                                    New Account
+                                    Nauja sąskaita
                                 </a>
                             </div>
+                        </li>
+
+                        <li class="nav-item .navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="{{ route('funds-fundstransfer') }}">Pinigų pervedimas</a>
                         </li>
 
                     </ul>

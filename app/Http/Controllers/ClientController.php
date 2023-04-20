@@ -58,10 +58,7 @@ class ClientController extends Controller
 
     public function create()
     {
-        
-        
-        return view('clients.create',[
-            
+        return view('clients.create',[  
         ]);
     }
 
