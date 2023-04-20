@@ -13,9 +13,18 @@
                         <label class="form-label">Iš sąskaitos:</label>
                         <select class="form-select" name="client_id">
                             <option value="0">Sąskaitų sąrašas</option>
-                            @foreach($accounts as $account)
+                            @foreach($clients as $client)
                             <option value="">
-                                {{$account->acc_number}}</option>
+                                {{$client->name}}
+                                @foreach($accounts as $account)
+                                @if($client->id == $account->client_id)
+
+                                {{$account->acc_number}}
+                                {{$account->acc_balance}}
+                                @endif
+                                @endforeach
+                            </option>
+
                             @endforeach
                         </select>
 

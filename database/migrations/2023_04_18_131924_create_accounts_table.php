@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
             $table->string('acc_number', 100);
+            $table->integer('acc_balance')->default(0);
             $table->unsignedBigInteger('client_id'); //rysys su kita lentele
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-           
+            
         });
     }
 

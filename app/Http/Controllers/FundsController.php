@@ -9,17 +9,26 @@ use Illuminate\Support\Facades\Validator;
 
 class FundsController extends Controller
 {
-    public function addfunds(Client $client)
+    public function addfunds(Request $request, Client $client, Account $account)
     {
-
+        $clients = Client::all();
+        $accounts = Account::all();
+        $id = $request->id ?? 0;
+        
         return view('funds.addfunds', [
+            'account' => $account,
             'client' => $client,
+            'id' => $id
             
         ]);
     }
 
-    public function plusfunds(Request $request, Client $client)
+    public function plusfunds(Request $request, Client $client, Account $account)
     {
+        $accounts = Account::all();
+        $clients = Client::all();
+        $id = $request->id ?? 0;
+
         $validator = Validator::make($request->all(), [
             'acc_balance' => 'required|numeric|min:0',
         ]); 
@@ -40,23 +49,33 @@ class FundsController extends Controller
                         ->withErrors($validator);
         } 
 
-        $client->acc_balance = $request->acc_balance+ $client->acc_balance;
-        $client->save();
+        $account->acc_balance = $request->acc_balance+ $account->acc_balance;
+        $account->save();
         return redirect()
         ->route('clients-index')
         ->with('ok', 'Your amount has increaseds!');
     }
 
-    public function withdrawfunds(Client $client)
+    public function withdrawfunds(Request $request, Client $client, Account $account)
     {
+
+        $clients = Client::all();
+        $accounts = Account::all();
+        $id = $request->id ?? 0;
         return view('funds.withdrawfunds', [
-            'client' => $client
+            'client' => $client,
+            'account' => $account,
+            'id' => $id,
+
         ]);
     }
 
-    public function minusfunds(Request $request, Client $client)
+    public function minusfunds(Request $request, Client $client, Account $account)
 
-    {        
+    {   $accounts = Account::all();
+        $clients = Client::all();     
+        $id = $request->id ?? 0;
+
         $validator = Validator::make($request->all(), [
             'acc_balance' => 'required|numeric|min:0',
         ]); 
@@ -67,21 +86,21 @@ class FundsController extends Controller
                         ->back()
                         ->withErrors($validator);
         }  
-        if ($request->acc_balance > $client->acc_balance) {
+        if ($request->acc_balance > $account->acc_balance) {
             return redirect()
             ->route('clients-index')
             ->with('warn', 'There are insufficient funds in the account!');
     
         } 
-        $client->acc_balance =  $client->acc_balance - $request->acc_balance;
-        $client->save();
+        $account->acc_balance =  $account->acc_balance - $request->acc_balance;
+        $account->save();
         return redirect()
         ->route('clients-index')
         ->with('ok', 'Your amount has decreased!');
     
     }
 
-    public function fundstransfer(Request $request, Client $client)
+    public function fundstransfer(Request $request, Client $client, Account $account)
     {
         $clients = Client::all();
         $accounts = Account::all();
@@ -94,7 +113,7 @@ class FundsController extends Controller
         ]);
     }
 
-    public function transfer(Request $request, Client $client)
+    public function transfer(Request $request, Client $client, Account $account)
     {
 
         // $clients = Client::all();

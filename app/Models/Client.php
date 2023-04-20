@@ -9,7 +9,7 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'surname', 'personal_code', 'acc_balance', 'client_id'];
+    protected $fillable = ['name', 'surname', 'personal_code', 'client_id'];
     public $timestamps = false;
     
     const SORT = [

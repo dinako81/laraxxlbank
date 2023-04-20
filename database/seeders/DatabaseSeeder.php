@@ -29,13 +29,15 @@ class DatabaseSeeder extends Seeder
                 'name' => $faker->firstName,
                 'surname' => $faker->lastName,
                 'personal_code' => rand(10000000000, 99999999999),
-                'acc_balance'=> "0",
+                
             ]);
         }
 
         foreach(range(1, 5) as $_) {
             DB::table('accounts')->insert([
-                'acc_number' => 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9),
+            'acc_number' => 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9),
+            'acc_balance'=> "0",
+            'client_id' =>  rand(0, 15)
             ]);
         }
     }

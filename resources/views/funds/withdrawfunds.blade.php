@@ -11,21 +11,18 @@
                 <div class="card-body grey">
                     <form action="{{route('clients-withdrawfunds', $client)}}" method="post">
                         <div class="mb-3">
-                            Name: <b> {{$client->name}} </b>
+                            Vardas, pavardė: <b> {{$client->name}} {{$client->surname}}</b>
                         </div>
                         <div class="mb-3">
-                            Surname: <b> {{$client->surname}} </b>
+                            Sąskaitos numeris: <b> {{$client->acc_number}} </b>
                         </div>
                         <div class="mb-3">
-                            Account number: <b> {{$client->acc_number}} </b>
-                        </div>
-                        <div class="mb-3">
-                            Account balance: <b> {{number_format($client->acc_balance, 2, ',', ' ')}} Eur </b>
+                            Sąskaitos likutis: <b> {{number_format($client->acc_balance, 2, ',', ' ')}} Eur </b>
                         </div>
                         <div class="mb-3">
                             <input type="text" class="form-control brown" name="acc_balance" value="">
                         </div>
-                        <button type="submit" class="btn btn-outline-dark brown">Withdraw Funds</button>
+                        <button type="submit" class="btn btn-outline-dark brown">Išimti lėšų</button>
                         @csrf
                         @method('put')
                     </form>

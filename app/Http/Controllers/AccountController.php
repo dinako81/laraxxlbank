@@ -62,7 +62,8 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         $account->update([
-            'acc_number' => $request->acc_number,
+            
+            'acc_balance' => $request->acc_balance,
            
         ]);
 

@@ -15,12 +15,18 @@ class HomeController extends Controller
     }
 
    
-    public function index(Client $client)
+    public function index(Request $request, Client $client, Account $account)
     {
-        $clients = Client::all();
+        // $clients = Client::all();
+        // $accounts = Account::all();
+
         return view('home', [
-            'client' => $client,         
-        ]);
+            'client' => $client,   
+            'account' => $account,     
+           
+
+        ]);  
+       
 
     }
 }

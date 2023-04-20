@@ -88,6 +88,7 @@ class ClientController extends Controller
         $client = new Client;
         $client->name = $request->name;
         $client->surname = $request->surname;
+        $client->personal_code = $request->personal_code;
         
         $client->save();
         return redirect()
@@ -129,7 +130,6 @@ class ClientController extends Controller
         
         $client->name = $request->name;
         $client->surname = $request->surname;
-        // $client->tt = isset($request->tt) ? 1 : 0;
         $client->save();
         return redirect()
         ->route('clients-index', $request->session()->get('last-client-view', []))
@@ -141,11 +141,11 @@ class ClientController extends Controller
     public function destroy(Request $request, Client $client)
     {
         
-        if (!$request->confirm && $client->order->count()) {
+        if (!$request->confirm && $client->account->count()) {
             return redirect()
             ->back()
             ->with('delete-modal', [
-                'This client has orders. Do you really want to delete?',
+                'This client has accounts. Do you really want to delete?',
                 $client->id
             ]);
         }
