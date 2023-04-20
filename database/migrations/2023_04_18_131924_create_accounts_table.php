@@ -13,12 +13,10 @@ return new class extends Migration
     {
         Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 100);
-            $table->string('surname', 100);
             $table->string('acc_number', 100);
             $table->unsignedBigInteger('client_id'); //rysys su kita lentele
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
-            $table->timestamps();
+           
         });
     }
 

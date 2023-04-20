@@ -15,8 +15,8 @@
                             <div class="account-line @if(Session::has('light-up') && Session::get('light-up') ==  $account->id) active @endif">
                                 <div class="account-info">
                                     <div class="account-data">
-                                        {{$account->title}}
-                                        {{$account->price}}
+                                        {{$account->acc_number}}
+
                                     </div>
                                     <a class="client" href="{{route('clients-show', $account->accountClient)}}">
                                         {{$account->accountClient->name}} {{$account->accountClient->surname}}

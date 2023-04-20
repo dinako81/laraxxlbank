@@ -9,7 +9,7 @@ class Account extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'surname', 'acc_number','client_id', 'client_id'];
+    protected $fillable = ['acc_number', 'client_id'];
     public $timestamps = false;
 
     public function accountClient() 

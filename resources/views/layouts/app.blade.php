@@ -32,6 +32,11 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
 
+
+                        <li class="nav-item .navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 Clients

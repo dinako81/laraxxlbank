@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Funds;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -10,8 +11,10 @@ class FundsController extends Controller
 {
     public function addfunds(Client $client)
     {
+
         return view('funds.addfunds', [
-            'client' => $client
+            'client' => $client,
+            
         ]);
     }
 

@@ -86,6 +86,21 @@
     }
 }
 
+.show-buttons{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    height: 100%;
+    position: relative;
+    button,
+    a {
+        top: -4px;
+        position: relative;
+    }
+
+}
+
 .order-line.active {
     background-color: lightcyan;
     padding: 4px;

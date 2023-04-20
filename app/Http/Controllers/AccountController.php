@@ -12,9 +12,6 @@ class AccountController extends Controller
     public function index()
     {
         $accounts = Account::all();
-
- 
-        
         return view('accounts.index', [
             'accounts' => $accounts
         ]);
@@ -40,8 +37,7 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         account::create([
-            'title' => $request->title,
-            'price' => $request->price,
+            'acc_number' => $request->acc_number,
             'client_id' => $request->client_id,
         ]);
 
@@ -66,8 +62,8 @@ class AccountController extends Controller
     public function update(Request $request, Account $account)
     {
         $account->update([
-            'title' => $request->title,
-            'price' => $request->price
+            'acc_number' => $request->acc_number,
+           
         ]);
 
         return redirect()

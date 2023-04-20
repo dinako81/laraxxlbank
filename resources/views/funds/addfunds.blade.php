@@ -17,7 +17,7 @@
                             Surname: <b> {{$client->surname}} </b>
                         </div>
                         <div class="mb-3">
-                            Account number: <b> {{$client->acc_number}} </b>
+                            {{-- Account number: <b> {{$account->acc_number}} </b> --}}
                         </div>
                         <div class="mb-3">
                             Account balance: <b> {{number_format($client->acc_balance, 2, ',', ' ')}} Eur </b>
