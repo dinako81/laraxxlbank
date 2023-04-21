@@ -6,13 +6,13 @@
         <div class="col-8">
             <div class="card mt-5">
                 <div class="card-header">
-                    <h1>Account</h1>
+                    <h1>Sąskaita</h1>
                 </div>
                 <div class="card-body">
                     <div class="client-line">
                         <div class="client-info">
-                            {{$client->name}}
-                            {{$client->surname}}
+                            {{$account->acc_number}}
+                            {{$account->acc_balance}}
 
                         </div>
                     </div>

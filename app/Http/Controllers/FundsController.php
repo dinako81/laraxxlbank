@@ -53,7 +53,7 @@ class FundsController extends Controller
         $account->save();
         return redirect()
         ->route('clients-index')
-        ->with('ok', 'Your amount has increaseds!');
+        ->with('ok', 'Suma padidinta!');
     }
 
     public function withdrawfunds(Request $request, Client $client, Account $account)

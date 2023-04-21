@@ -6,7 +6,7 @@
         <div class="col-">
             <div class="card mt-5">
                 <div class="card-header">
-                    <h1>Client</h1>
+                    <h1>Klientas</h1>
                 </div>
                 <div class="card-body">
                     <div class="client-line">
@@ -15,63 +15,61 @@
                             {{$client->surname}}
                         </div>
                         <div class="buttons">
-                            <a href="{{route('accounts-create', ['id' => $client])}}" class="btn btn-info">new account</a>
-                            <a href="{{route('clients-edit', $client)}}" class="btn btn-success">Edit</a>
+                            <a href="{{route('accounts-create', ['id' => $client])}}" class="btn btn-info">Nauja sąskaita</a>
+                            <a href="{{route('clients-edit', $client)}}" class="btn btn-success btn-outline-dark">Redaguoti</a>
                             <form action="{{route('clients-delete', $client)}}" method="post">
-                                <button type="submit" class="btn btn-danger">delete</button>
+                                <button type="submit" class="btn btn-danger btn-outline-dark">Ištrinti</button>
                                 @csrf
                                 @method('delete')
                             </form>
                         </div>
                     </div>
-                    <h2>Accounts</h2>
+                    <h2>Sąskaitos</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"><b>Sąskaitos numeris</b></th>
+                                <th scope="col"><b>Sąskaitos likutis</b></th>
+                                <th scope="col"></th>
+                                <td>
+                        </thead>
+                        <tbody>
+                            @forelse($client->account as $account)
 
-                    @forelse($client->account as $account)
-                    <li class="list-group-item">
-                        <div class="account-line">
-                            <div class="account-info">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th scope="col"><b>Account number</b></th>
-                                            <th scope="col"><b>Account balance</b></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
+                            <tr>
+                                <td> {{$account->acc_number}}</td>
+                                <td><b><i> {{number_format($account->acc_balance, 2, ',', ' ')}} </i> </b></td>
+                                <td></td>
 
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td> {{$account->acc_number}} </td>
-                                            <td> {{number_format($client->acc_balance, 2, ',', ' ')}} Eur </td>
-                                            <div class="buttons show-buttons">
-                                                <td>
-                                                    <form action="{{route('accounts-delete', $account)}}" method="post">
-                                                        <button type="submit" class="btn btn-danger">delete</button>
-                                                        @csrf
-                                                        @method('delete')
-                                                    </form>
-                                                </td>
-                                                <td> <a href="{{route('clients-addfunds', $client)}}" class="btn btn-outline-dark brown" style="font-size: 12px">Add Funds</a></td>
-                                                <td><a href="{{route('clients-withdrawfunds', $client)}}" class="btn btn-outline-dark brown" style="font-size: 12px">Withdraw Funds</a></td>
-                                            </div>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </li>
+                                <div class="buttons show-buttons">
+                                    <td>
+                                        <form action="{{route('accounts-delete', $account)}}" method="post">
+                                            <button type="submit" class="btn btn-danger btn-outline-dark">Ištrinti</button>
+                                            @csrf
+                                            @method('delete')
+                                        </form>
+                                    </td>
+                                    <td><a href="{{route('clients-addfunds', $account)}}" class="btn btn-outline-dark">Pridėti lėšų</a></td>
+                                    <td><a href="{{route('clients-withdrawfunds', $account)}}" class="btn btn-outline-dark">Išimti lėšų</a></td>
+                                </div>
+                            </tr>
 
-                    @empty
-                    <li class="list-group-item">
-                        <div class="client-line">No accounts</div>
-                    </li>
-                    @endforelse
+                            @empty
+                            <li class="list-group-item">
+                                <div class="client-line">No accounts</div>
+                            </li>
+                            @endforelse
+
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
+
         </div>
     </div>
+</div>
+</div>
 </div>
 
 @endsection

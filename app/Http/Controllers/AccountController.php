@@ -12,6 +12,7 @@ class AccountController extends Controller
     public function index()
     {
         $accounts = Account::all();
+        
         return view('accounts.index', [
             'accounts' => $accounts
         ]);
@@ -21,9 +22,7 @@ class AccountController extends Controller
     public function create(Request $request)
     {
         $clients = Client::all();
-
         $id = $request->id ?? 0;
-        
         $acc_number = 'LT' . rand(0, 9) . rand(0, 9) . ' ' . '0014' . ' ' . '7' . rand(0, 9) . rand(0, 9) . rand(0, 9) . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9)  . ' ' . rand(0, 9) . rand(0, 9) . rand(0, 9) . rand(0, 9);
 
         return view('accounts.create', [
@@ -45,11 +44,14 @@ class AccountController extends Controller
     }
 
 
-    public function show(Account $account)
+    public function show(Account $account, Request $request, Client $client)
     {
-        //
+       
+        return view('accounts.show', [
+            'client' => $client,
+            'account' => $account
+        ]);
     }
-
 
     public function edit(Account $account)
     {
@@ -57,7 +59,6 @@ class AccountController extends Controller
             'account' => $account
         ]);
     }
-
 
     public function update(Request $request, Account $account)
     {
@@ -79,6 +80,7 @@ class AccountController extends Controller
         $account->delete();
         return redirect()
         ->back()
-        ->with('info', 'No more account');
+        ->with('info', 'Sąskaitų nėra');
+       
     }
 }

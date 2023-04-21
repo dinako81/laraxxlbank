@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 // use Illuminate\Validation\Validator as V;
@@ -17,6 +18,7 @@ class ClientController extends Controller
     
     public function index(Request $request)
     {
+        
         $clients = Client::where('id', '>', 0);
         $sort = $request->sort ?? '';
         $per = (int) ($request->per ?? 10);
@@ -46,6 +48,7 @@ class ClientController extends Controller
 
         return view('clients.index', [
             'clients' => $clients,
+           
             'sortSelect' => Client::SORT,
             'sort' => $sort,
             'perSelect' => Client::PER,
@@ -67,11 +70,17 @@ class ClientController extends Controller
     {
         
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3',
-            'surname' => 'required|min:3',
+            'name' => 'required|min:3|alpha',
+            'surname' => 'required|min:3|alpha',
+            'personal_code' => 'required|min:11|numeric',
         ],
         [
-            'name.min' => 'Prailginti vardą iki 3 raidžių'
+            'name.min' => 'Prailginti vardą iki 3 raidžių.',
+            'name.alpha' => 'Vardas tik iš raidžių.',
+            'surname.min' => 'Prailginti pavardę iki 3 raidžių.',
+            'surname.alpha' => 'Pavardė tik iš raidžių.',
+            'personal_code.min' => 'Prailginti asmens kodą iki 11 skaitmenų.',
+            'personal_code.numeric' => 'Asmens kodas tik iš skaitmenų.'
         ]);
 
         // $validator->after(function (V $validator) {
@@ -93,18 +102,18 @@ class ClientController extends Controller
         $client->save();
         return redirect()
         ->route('clients-index')
-        ->with('ok', 'New client was created');
+        ->with('ok', 'Naujas klientas sukurtas');
 
     }
 
-
-    public function show(Client $client)
+    public function show(Client $client, Account $account)
     {
+
         return view('clients.show', [
-            'client' => $client
+            'client' => $client,
+            'account' => $account
         ]);
     }
-
 
     public function edit(Request $request, Client $client)
     {
@@ -113,13 +122,18 @@ class ClientController extends Controller
         ]);
     }
 
-
     public function update(Request $request, Client $client)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:3',
-            'surname' => 'required|min:3',
-        ]);
+            'name' => 'required|min:3|alpha',
+            'surname' => 'required|min:3|alpha',
+        ],
+        [
+            'name.min' => 'Prailginti vardą iki 3 raidžių.',
+            'name.alpha' => 'Vardas tik iš raidžių.',
+            'surname.min' => 'Prailginti pavardę iki 3 raidžių.',
+            'surname.alpha' => 'Pavardė tik iš raidžių.',
+         ]);
 
         if ($validator->fails()) {
             $request->flash();
@@ -133,7 +147,7 @@ class ClientController extends Controller
         $client->save();
         return redirect()
         ->route('clients-index', $request->session()->get('last-client-view', []))
-        ->with('ok', 'The client was updated')
+        ->with('ok', 'Klientas paturbintas')
         ->with('light-up', $client->id);
     }
 
@@ -145,7 +159,7 @@ class ClientController extends Controller
             return redirect()
             ->back()
             ->with('delete-modal', [
-                'This client has accounts. Do you really want to delete?',
+                'Klientas turi sąskaitų. Ar tikrai norite ištrinti?',
                 $client->id
             ]);
         }
@@ -154,6 +168,6 @@ class ClientController extends Controller
         $client->delete();
         return redirect()
         ->route('clients-index')
-        ->with('info', 'The client is dead');
+        ->with('info', 'Klientas pašalintas');
     }
 }

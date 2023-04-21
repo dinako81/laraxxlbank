@@ -16,6 +16,28 @@
                             @foreach($clients as $client)
                             <option value="">
                                 {{$client->name}}
+                                {{$client->surname}}
+
+                                @foreach($accounts as $account)
+                                @if($client->id == $account->client_id)
+
+                                <tr><i> {{$account->acc_number}} </i> </tr>
+                                <tr><b> {{$account->acc_balance}} Eur </b></tr>
+                                @endif
+                                @endforeach
+                            </option>
+
+                            @endforeach
+                        </select>
+
+                        <label class="form-label">Į sąskaita:</label>
+                        <select class="form-select" name="client_id">
+                            <option value="0">Sąskaitų sąrašas</option>
+                            @foreach($clients as $client)
+                            <option value="">
+                                <tr> {{$client->name}} </tr>
+                                <tr>{{$client->surname}}</tr>
+
                                 @foreach($accounts as $account)
                                 @if($client->id == $account->client_id)
 
@@ -28,14 +50,6 @@
                             @endforeach
                         </select>
 
-                        <label class="form-label">Į sąskaita:</label>
-                        <select class="form-select" name="client_id">
-                            <option value="0">Sąskaitų sąsrašas</option>
-                            @foreach($accounts as $account)
-                            <option value="">
-                                {{$account->acc_number}}</option>
-                            @endforeach
-                        </select>
                         <div class="mb-3">
                             <input type="text" class="form-control brown" name="acc_balance" value="">
                         </div>

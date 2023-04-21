@@ -39,7 +39,7 @@
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Clients
+                                Klientai
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end brown" aria-labelledby="navbarDropdown">
@@ -54,7 +54,7 @@
 
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Accounts
+                                Sąskaitos
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end brown" aria-labelledby="navbarDropdown">
