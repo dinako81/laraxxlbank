@@ -49,7 +49,7 @@ class AccountController extends Controller
        
         return view('accounts.show', [
             'client' => $client,
-            'account' => $account
+            'accounts' => $accounts
         ]);
     }
 

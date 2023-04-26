@@ -5,26 +5,26 @@
     <div class="row justify-content-center">
         <div class="col-">
             <div class="card mt-5">
-                <div class="card-header">
-                    <h1>Klientas</h1>
+                <div class="card-header grey">
+                    <h3>Klientas:</h3>
                 </div>
-                <div class="card-body">
+                <div class="card-body grey">
                     <div class="client-line">
                         <div class="client-info">
-                            {{$client->name}}
-                            {{$client->surname}}
+                            <h1><i>{{$client->name}}
+                                    {{$client->surname}}</i></h1>
                         </div>
                         <div class="buttons">
-                            <a href="{{route('accounts-create', ['id' => $client])}}" class="btn btn-info">Nauja sąskaita</a>
-                            <a href="{{route('clients-edit', $client)}}" class="btn btn-success btn-outline-dark">Redaguoti</a>
+                            <a href="{{route('accounts-create', ['id' => $client])}}" class="btn btn-outline-dark btn2 brown">Nauja sąskaita</a>
+                            <a href="{{route('clients-edit', $client)}}" class="btn btn-outline-dark btn-outline-dark btn2 brown">Redaguoti</a>
                             <form action="{{route('clients-delete', $client)}}" method="post">
-                                <button type="submit" class="btn btn-danger btn-outline-dark">Ištrinti</button>
+                                <button type="submit" class="btn btn-outline-dark btn2 text-danger">Ištrinti</button>
                                 @csrf
                                 @method('delete')
                             </form>
                         </div>
                     </div>
-                    <h2>Sąskaitos</h2>
+                    <h3>Sąskaitos:</h3>
                     <table class="table">
                         <thead>
                             <tr>
@@ -35,22 +35,22 @@
                         </thead>
                         <tbody>
                             @forelse($client->account as $account)
-
                             <tr>
                                 <td> {{$account->acc_number}}</td>
                                 <td><b><i> {{number_format($account->acc_balance, 2, ',', ' ')}} </i> </b></td>
                                 <td></td>
 
                                 <div class="buttons show-buttons">
+                                    <td><a href="{{route('clients-addfunds', $account)}}" class="btn btn-outline-dark brown btn2">Pridėti lėšų</a></td>
+                                    <td><a href="{{route('clients-withdrawfunds', $account)}}" class="btn btn-outline-dark brown btn2">Išimti lėšų</a></td>
                                     <td>
                                         <form action="{{route('accounts-delete', $account)}}" method="post">
-                                            <button type="submit" class="btn btn-danger btn-outline-dark">Ištrinti</button>
+                                            <button type="submit" class="btn  btn-outline-dark text-danger">Ištrinti</button>
                                             @csrf
                                             @method('delete')
                                         </form>
                                     </td>
-                                    <td><a href="{{route('clients-addfunds', $account)}}" class="btn btn-outline-dark">Pridėti lėšų</a></td>
-                                    <td><a href="{{route('clients-withdrawfunds', $account)}}" class="btn btn-outline-dark">Išimti lėšų</a></td>
+
                                 </div>
                             </tr>
 

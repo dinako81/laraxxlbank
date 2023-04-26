@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-12">
-            <div class="card mt-5">
-                <div class="card-header">
+            <div class="mt-5">
+                <div class="card-header grey">
                     <h1>Klientų sąrašas</h1>
 
                     <form action="{{route('clients-index')}}" method="get">
@@ -50,8 +50,8 @@
 
                                 <div class="col-3">
                                     <div class="sort-filter-buttons">
-                                        <button type="submit" class="btn btn-primary">Pateikti</button>
-                                        <a href="{{route('clients-index')}}" class="btn btn-danger">Ištrinti</a>
+                                        <button type="submit" class="btn btn-outline-dark butn2 brown">Pateikti</button>
+                                        <a href="{{route('clients-index')}}" class="btn btn-outline-dark butn2 text-danger">Ištrinti</a>
                                     </div>
                                 </div>
 
@@ -61,7 +61,7 @@
                 </div>
 
 
-                <table class="table">
+                <table class="table grey">
                     <thead>
                         <tr>
                             <th scope="col"><b>ID</b></th>
@@ -83,20 +83,28 @@
                                 {{$client->account->count()}}
                                 @endif </td>
                             <td>
+                                <ol>
+                                    @foreach($accounts as $account)
+                                    @if($client->id == $account->client_id)
+                                    <li>{{$account->acc_number}} </br>
+                                        <b> {{$account->acc_balance}} Eur </b></li>
+                                    @endif
+                                    @endforeach
+                                </ol>
+                            </td>
+                            <td>
                                 @foreach($accounts as $account)
                                 @if($client->id == $account->client_id)
-                                {{$account->acc_number}} </br>
+                                <b> {{$totalClientBalance}} </b>
                                 @endif
                                 @endforeach
                             </td>
-                            <td>
-                                0 money </td>
                             <div class="buttons">
-                                <td><a href="{{route('clients-show', $client)}}" class="btn btn-info">Peržiūra</a></td>
-                                <td><a href="{{route('clients-edit', $client)}}" class="btn btn-success">Redaguoti</a></td>
+                                <td><a href="{{route('clients-show', $client)}}" class="btn  btn-outline-dark butn2 brown">Peržiūra</a></td>
+                                <td><a href="{{route('clients-edit', $client)}}" class="btn  btn-outline-dark butn2 brown">Redaguoti</a></td>
                                 <td>
                                     <form action="{{route('clients-delete', $client)}}" method="post">
-                                        <button type="submit" class="btn btn-danger btn-outline-dark">Ištrinti</button>
+                                        <button type="submit" class="btn  btn-outline-dark butn2 text-danger">Ištrinti</button>
                                         @csrf
                                         @method('delete')
                                     </form>

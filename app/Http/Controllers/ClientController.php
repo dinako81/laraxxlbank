@@ -26,6 +26,7 @@ class ClientController extends Controller
         $filter = $request->filter ?? '';
         $per = (int) ($request->per ?? 10);
         $page = $request->page ?? 1;
+        $totalClientBalance = $accounts->sum('acc_balance');
 
         $clients = match($filter) {
             'clients' => $clients,
@@ -68,7 +69,8 @@ class ClientController extends Controller
             'perSelect' => Client::PER,
             'per' => $per,
             'page' => $page,
-            'id' => $id
+            'id' => $id,
+            'totalClientBalance' => $totalClientBalance
         ]);
 
     }

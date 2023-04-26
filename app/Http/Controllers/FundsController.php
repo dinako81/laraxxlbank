@@ -113,14 +113,14 @@ class FundsController extends Controller
         ]);
     }
 
-    public function transfer(Request $request, Client $client, Account $account)
+    public function transfer(Request $request)
     {
 
         $accounts = Account::all();
         $id = $request->id ?? 0;
-         
 
-        $account->acc_balance = $request->acc_balance + $account->acc_balance;
+        $accounts->acc_balance = $request->acc_balance - $accounts->acc_balance;
+
         $account->save();
         return redirect()
         ->route('funds-fundstransfer')
