@@ -116,32 +116,14 @@ class FundsController extends Controller
     public function transfer(Request $request, Client $client, Account $account)
     {
 
-        // $clients = Client::all();
-        // $id = $request->id ?? 0;
-        $validator = Validator::make($request->all(), [
-            'acc_balance' => 'required|numeric|min:0',
-        ]); 
-        
-        if ($validator->fails()) {
-            $request->flash();
-            return redirect()
-                        ->back()
-                        ->withErrors($validator);
-        }  $validator = Validator::make($request->all(), [
-            'acc_balance' => 'required|numeric|min:0',
-        ]); 
-        
-        if ($validator->fails()) {
-            $request->flash();
-            return redirect()
-                        ->back()
-                        ->withErrors($validator);
-        } 
+        $accounts = Account::all();
+        $id = $request->id ?? 0;
+         
 
-        $client->acc_balance = $request->acc_balance+ $client->acc_balance;
-        $client->save();
+        $account->acc_balance = $request->acc_balance + $account->acc_balance;
+        $account->save();
         return redirect()
-        ->route('clients-index')
+        ->route('funds-fundstransfer')
         ->with('ok', 'Your amount has increaseds!');
     }
 }

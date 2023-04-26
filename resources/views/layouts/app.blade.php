@@ -34,7 +34,7 @@
 
 
                         <li class="nav-item .navbar-nav">
-                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Į pradžią</a>
                         </li>
 
                         <li class="nav-item dropdown">

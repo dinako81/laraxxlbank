@@ -13,40 +13,34 @@
                         <label class="form-label">Iš sąskaitos:</label>
                         <select class="form-select" name="client_id">
                             <option value="0">Sąskaitų sąrašas</option>
-                            @foreach($clients as $client)
+                            @foreach($accounts as $account)
                             <option value="">
-                                {{$client->name}}
-                                {{$client->surname}}
-
-                                @foreach($accounts as $account)
-                                @if($client->id == $account->client_id)
-
                                 <tr><i> {{$account->acc_number}} </i> </tr>
                                 <tr><b> {{number_format($account->acc_balance, 2, ',', ' ')}} Eur </b></tr>
+                                @foreach($clients as $client)
+                                @if($account->client_id == $client->id)
+                                {{$client->name}}
+                                {{$client->surname}}
                                 @endif
                                 @endforeach
                             </option>
-
                             @endforeach
                         </select>
 
                         <label class="form-label">Į sąskaita:</label>
                         <select class="form-select" name="client_id">
                             <option value="0">Sąskaitų sąrašas</option>
-                            @foreach($clients as $client)
+                            @foreach($accounts as $account)
                             <option value="">
-                                <tr> {{$client->name}} </tr>
-                                <tr>{{$client->surname}}</tr>
-
-                                @foreach($accounts as $account)
-                                @if($client->id == $account->client_id)
-
-                                {{$account->acc_number}}
-                                {{number_format($account->acc_balance, 2, ',', ' ')}}
+                                <tr><i> {{$account->acc_number}} </i> </tr>
+                                <tr><b> {{number_format($account->acc_balance, 2, ',', ' ')}} Eur </b></tr>
+                                @foreach($clients as $client)
+                                @if($account->client_id == $client->id)
+                                {{$client->name}}
+                                {{$client->surname}}
                                 @endif
                                 @endforeach
                             </option>
-
                             @endforeach
                         </select>
 
