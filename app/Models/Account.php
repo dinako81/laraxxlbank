@@ -11,6 +11,7 @@ class Account extends Model
 
     protected $fillable = ['acc_number', 'acc_balance', 'client_id'];
     public $timestamps = false;
+    
 
     public function accountClient() 
     {

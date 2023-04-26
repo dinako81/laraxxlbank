@@ -20,11 +20,22 @@ class ClientController extends Controller
     {
         
         $clients = Client::where('id', '>', 0);
+        $id = $request->id ?? 0;
+        $accounts = Account::all();
         $sort = $request->sort ?? '';
+        $filter = $request->filter ?? '';
         $per = (int) ($request->per ?? 10);
         $page = $request->page ?? 1;
 
-       
+        $clients = match($filter) {
+            'clients' => $clients,
+            'acc_balance_pos' => $clients->where('acc_balance', '>', 0),
+            'acc_balance_neg' => $clients->where('acc_balance', '<', 0),
+            'acc_balance_zero' => $clients->where('acc_balance', '=', 0),
+            'acc_number' => $clients->where('acc_number', '=', 0),
+            default => $clients
+        };
+        
 
         $clients = match($sort) {
             'clients' => $clients,
@@ -35,6 +46,7 @@ class ClientController extends Controller
 
         $request->session()->put('last-client-view', [
             'sort' => $sort,
+            'filter' => $filter,
             'page' => $page,
             'per' => $per
         ]);
@@ -48,12 +60,15 @@ class ClientController extends Controller
 
         return view('clients.index', [
             'clients' => $clients,
-           
+            'accounts' => $accounts,
             'sortSelect' => Client::SORT,
             'sort' => $sort,
+            'filterSelect' => Client::FILTER,
+            'filter' => $filter,
             'perSelect' => Client::PER,
             'per' => $per,
-            'page' => $page
+            'page' => $page,
+            'id' => $id
         ]);
 
     }

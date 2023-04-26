@@ -13,10 +13,17 @@ class Client extends Model
     public $timestamps = false;
     
     const SORT = [
-        
-        'surname_asc' => 'By surname A-Z',
-        'surname_desc' => 'By surname Z-A',
-        'default' => 'No sort'
+        'default' => 'Be rūšiavimo',
+        'surname_asc' => 'Pavardė A-Z',
+        'surname_desc' => 'Pavardė Z-A',
+    ];
+
+    const FILTER = [
+        'default' => 'Visi',
+        'acc_balance_pos' => 'Teigiamas likutis',
+        'acc_balance_neg' => 'Neigiamas likutis',
+        'acc_balance_zero' => 'Sąskaita lygu 0',
+        'acc_number' => 'Nėra sąskaitų',
     ];
 
     const PER = [

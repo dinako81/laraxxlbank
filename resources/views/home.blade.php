@@ -8,10 +8,20 @@
                 <div class="card-header">{{ __('Banko satistika:') }}</div>
                 <div class="card-header">klientų skaičius: [{{$client->count()}}]</div>
                 <div class="card-header">klientų sąskaitų skaičius: [{{$account->count()}}]</div>
-                <div class="card-header">bendra laikoma suma: [{{$totalBalance}} Eur]</div>
-                <div class="card-header">didžiausia suma vienoje sąskaitoje: [{{$maxAmount}} Eur] </div>
-                <div class="card-header">vidutinė sąskaitų suma</div>
-                <div class="card-header">sąskaitų su 0 likučių kiekis</div>
+                <div class="card-header">bendra laikoma suma: Eur</div>
+                <div class="card-header">didžiausia suma vienoje sąskaitoje: Eur</div>
+                <div class="card-header">vidutinė sąskaitų suma: Eur</div>
+                <div class="card-header">sąskaitų su 0 likučių kiekis [
+                    @foreach($account as $key => $value)
+                    @if($client->account->count()=== 0)
+
+
+
+                    @endif
+                    @endforeach
+
+
+                    ]</div>
                 <div class="card-header">sąskaitų su minusiniu likučiu kiekis</div>
                 <div class="card-body">
                     @if (session('status'))

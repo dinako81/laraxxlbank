@@ -89,7 +89,7 @@ class FundsController extends Controller
         if ($request->acc_balance > $account->acc_balance) {
             return redirect()
             ->route('clients-index')
-            ->with('warn', 'There are insufficient funds in the account!');
+            ->with('warn', 'Sąskaitoje nepakanka lėšų!');
     
         } 
         $account->acc_balance =  $account->acc_balance - $request->acc_balance;

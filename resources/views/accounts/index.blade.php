@@ -8,6 +8,7 @@
                 <div class="card-header">
                     <h1>Sąskaitų sąrašas</h1>
                 </div>
+
                 <div class="card-body">
                     <ul class="list-group">
                         @forelse($accounts as $account)

@@ -22,7 +22,7 @@
                                 @if($client->id == $account->client_id)
 
                                 <tr><i> {{$account->acc_number}} </i> </tr>
-                                <tr><b> {{$account->acc_balance}} Eur </b></tr>
+                                <tr><b> {{number_format($account->acc_balance, 2, ',', ' ')}} Eur </b></tr>
                                 @endif
                                 @endforeach
                             </option>
@@ -42,7 +42,7 @@
                                 @if($client->id == $account->client_id)
 
                                 {{$account->acc_number}}
-                                {{$account->acc_balance}}
+                                {{number_format($account->acc_balance, 2, ',', ' ')}}
                                 @endif
                                 @endforeach
                             </option>
