@@ -18,7 +18,6 @@ class AccountController extends Controller
         ]);
     }
 
-
     public function create(Request $request)
     {
         $clients = Client::all();
@@ -77,10 +76,18 @@ class AccountController extends Controller
 
     public function destroy(Account $account)
     {
+        if ($account->acc_balance > 0) {
+            return redirect()
+            ->route('accounts-index')
+            ->with('warn', 'Sąskaitoje yra lėšų!');
+    
+        } else {
+
         $account->delete();
         return redirect()
         ->back()
-        ->with('info', 'Sąskaitų nėra');
+        ->with('info', 'Sąskaita ištrinta');
        
     }
+}
 }

@@ -86,12 +86,12 @@ class FundsController extends Controller
                         ->back()
                         ->withErrors($validator);
         }  
-        if ($request->acc_balance > $account->acc_balance) {
-            return redirect()
-            ->route('clients-index')
-            ->with('warn', 'Sąskaitoje nepakanka lėšų!');
+        // if ($request->acc_balance > $account->acc_balance) {
+        //     return redirect()
+        //     ->route('clients-index')
+        //     ->with('warn', 'Sąskaitoje nepakanka lėšų!');
     
-        } 
+        // } 
         $account->acc_balance =  $account->acc_balance - $request->acc_balance;
         $account->save();
         return redirect()
