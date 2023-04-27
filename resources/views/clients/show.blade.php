@@ -41,6 +41,11 @@
                                 <td><b><i> {{number_format($account->acc_balance, 2, ',', ' ')}} </i> </b></td>
                                 <td>
                                     <div class="buttons show-buttons">
+                                        <form action="{{route('funds-taxes', $account)}}" method="post">
+                                            <button type="submit" class="btn  btn-outline-dark butn2 brown">Mokesčiai</button>
+                                            @csrf
+                                            @method('put')
+                                        </form>
                                         <a href="{{route('clients-addfunds', $account)}}" class="btn btn-outline-dark brown btn2">Pridėti lėšų</a>
                                         <a href="{{route('clients-withdrawfunds', $account)}}" class="btn btn-outline-dark brown btn2">Išimti lėšų</a>
 

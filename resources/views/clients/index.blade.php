@@ -104,13 +104,6 @@
                                         @csrf
                                         @method('delete')
                                     </form>
-
-
-                                    <form action="{{route('funds-taxes', $account)}}" method="post">
-                                        <button type="submit" class="btn  btn-outline-dark butn2 brown">Mokesčiai</button>
-                                        @csrf
-                                        @method('put')
-                                    </form>
                             </td>
                         </tr>
 
