@@ -34,7 +34,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-        account::create([
+        Account::create([
             'acc_number' => $request->acc_number,
             'client_id' => $request->client_id,
         ]);
