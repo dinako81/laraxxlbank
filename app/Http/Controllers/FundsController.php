@@ -100,30 +100,59 @@ class FundsController extends Controller
     
     }
 
+    public function taxes(Request $request, Account $account) {
+        $account->acc_balance = $account->acc_balance - 5;
+            $account->save();
+            return redirect()->route('clients-index')->with('ok', '5 Eurai mokesčiams nuskaičiuoti');
+    }
+
     public function fundstransfer(Request $request, Client $client, Account $account)
     {
         $clients = Client::all();
-        $accounts = Account::all();
-        $id = $request->id ?? 0;
-
+        $accounts= Account::all();
+      
         return view('funds.fundstransfer', [
-            'clients' => $clients,
-            'accounts' => $accounts,
-            'id' => $id,
-        ]);
+            'account' => $account,
+            'client' =>$client,
+            'clients'=>$clients,
+            'accounts'=>$accounts,
+            'title'=>'Pinigų pervedimai',
+        ]); ;
     }
 
     public function transfer(Request $request)
-    {
 
-        $accounts = Account::all();
-        $id = $request->id ?? 0;
-
-        $accounts->acc_balance = $request->acc_balance - $accounts->acc_balance;
-
-        $account->save();
+    {       $validator = Validator::make($request->all(), [
+            'from_client_id' => 'required',
+            'to_client_id' => 'required',
+            'acc_balance' => 'required|numeric|min:0.01'
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+    
+        $fromAccount = Account::findOrFail($request->from_client_id);
+        $toAccount = Account::findOrFail($request->to_client_id);
+    
+        if ($fromAccount->acc_balance < $request->acc_balance) {
+            return redirect()
+                ->back()
+                ->withErrors(['warn' => 'Nepakankamas likutis'])
+                ->withInput();
+        }
+    
+        $fromAccount->acc_balance -= $request->acc_balance;
+        $toAccount->acc_balance += $request->acc_balance;
+    
+        $fromAccount->save();
+        $toAccount->save();
+    
         return redirect()
-        ->route('funds-fundstransfer')
-        ->with('ok', 'Your amount has increaseds!');
+            ->route('funds-fundstransfer')
+            ->with('ok', 'Pavedimas įvykdytas sėkmingai!');
     }
 }

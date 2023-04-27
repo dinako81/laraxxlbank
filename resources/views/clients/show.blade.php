@@ -31,43 +31,43 @@
                                 <th scope="col"><b>Sąskaitos numeris</b></th>
                                 <th scope="col"><b>Sąskaitos likutis</b></th>
                                 <th scope="col"></th>
-                                <td>
+
+
                         </thead>
                         <tbody>
                             @forelse($client->account as $account)
                             <tr>
                                 <td> {{$account->acc_number}}</td>
                                 <td><b><i> {{number_format($account->acc_balance, 2, ',', ' ')}} </i> </b></td>
-                                <td></td>
+                                <td>
+                                    <div class="buttons show-buttons">
+                                        <a href="{{route('clients-addfunds', $account)}}" class="btn btn-outline-dark brown btn2">Pridėti lėšų</a>
+                                        <a href="{{route('clients-withdrawfunds', $account)}}" class="btn btn-outline-dark brown btn2">Išimti lėšų</a>
 
-                                <div class="buttons show-buttons">
-                                    <td><a href="{{route('clients-addfunds', $account)}}" class="btn btn-outline-dark brown btn2">Pridėti lėšų</a></td>
-                                    <td><a href="{{route('clients-withdrawfunds', $account)}}" class="btn btn-outline-dark brown btn2">Išimti lėšų</a></td>
-                                    <td>
                                         <form action="{{route('accounts-delete', $account)}}" method="post">
                                             <button type="submit" class="btn  btn-outline-dark text-danger">Ištrinti</button>
                                             @csrf
                                             @method('delete')
                                         </form>
-                                    </td>
+                                </td>
 
-                                </div>
-                            </tr>
-
-                            @empty
-                            <li class="list-group-item">
-                                <div class="client-line">No accounts</div>
-                            </li>
-                            @endforelse
-
-
-                        </tbody>
-                    </table>
                 </div>
-            </div>
+                </tr>
 
+                @empty
+                <li class="list-group-item">
+                    <div class="client-line">No accounts</div>
+                </li>
+                @endforelse
+
+
+                </tbody>
+                </table>
+            </div>
         </div>
+
     </div>
+</div>
 </div>
 </div>
 </div>

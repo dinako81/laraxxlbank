@@ -70,7 +70,6 @@
                             <th scope="col">Sąskaitų sąrašas</th>
                             <th scope="col"><b>Bendras sąskaitų likutis, Eur</b></th>
                             <th scope="col"></th>
-                            <th scope="col"></th>
                         </tr>
                     </thead>
 
@@ -93,23 +92,26 @@
                                 </ol>
                             </td>
                             <td>
-                                @foreach($accounts as $account)
-                                @if($client->id == $account->client_id)
                                 <b> {{$totalClientBalance}} </b>
-                                @endif
-                                @endforeach
                             </td>
-                            <div class="buttons">
-                                <td><a href="{{route('clients-show', $client)}}" class="btn  btn-outline-dark butn2 brown">Peržiūra</a></td>
-                                <td><a href="{{route('clients-edit', $client)}}" class="btn  btn-outline-dark butn2 brown">Redaguoti</a></td>
-                                <td>
+                            <td>
+                                <div class="buttons show-buttons">
+                                    <a href="{{route('clients-show', $client)}}" class="btn  btn-outline-dark butn2 brown">Peržiūra</a>
+                                    <a href="{{route('clients-edit', $client)}}" class="btn  btn-outline-dark butn2 brown">Redaguoti</a>
+
                                     <form action="{{route('clients-delete', $client)}}" method="post">
                                         <button type="submit" class="btn  btn-outline-dark butn2 text-danger">Ištrinti</button>
                                         @csrf
                                         @method('delete')
                                     </form>
-                                </td>
 
+
+                                    <form action="{{route('funds-taxes', $account)}}" method="post">
+                                        <button type="submit" class="btn  btn-outline-dark butn2 brown">Mokesčiai</button>
+                                        @csrf
+                                        @method('put')
+                                    </form>
+                            </td>
                         </tr>
 
                         @empty

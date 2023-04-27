@@ -54,8 +54,9 @@ Route::prefix('clients')->name('clients-')->group(function () {
 });
 
 Route::prefix('funds')->name('funds-')->group(function () {
-     Route::get('/fundstransfer', [F::class, 'fundstransfer'])->name('fundstransfer');
+    Route::get('/fundstransfer', [F::class, 'fundstransfer'])->name('fundstransfer');
     Route::put('/fundstransfer', [F::class, 'transfer'])->name('transfer');
+    Route::put('/taxes/{account}',[F::class, 'taxes'])->name('taxes'); 
 });
 
 Route::prefix('accounts')->name('accounts-')->group(function () {
