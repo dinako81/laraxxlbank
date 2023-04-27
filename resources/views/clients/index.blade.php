@@ -92,7 +92,7 @@
                                 </ol>
                             </td>
                             <td>
-                                <b> {{$totalClientBalance}} </b>
+                                <b> Eur </b>
                             </td>
                             <td>
                                 <div class="buttons show-buttons">

@@ -44,7 +44,7 @@ class HomeController extends Controller
         $accounts = Account::all();
         $totalMoney = 0;
         foreach ($accounts as $account) {
-            $totalMoney += $account->money;
+            $totalMoney += $account->acc_balance;
         }
         return $totalMoney;
     }

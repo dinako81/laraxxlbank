@@ -22,6 +22,7 @@ class ClientController extends Controller
         $clients = Client::where('id', '>', 0);
         $id = $request->id ?? 0;
         $accounts = Account::all();
+
         $sort = $request->sort ?? '';
         $filter = $request->filter ?? '';
         $per = (int) ($request->per ?? 10);

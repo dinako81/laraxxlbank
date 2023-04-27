@@ -13,10 +13,10 @@
                     <label class="form-label">
                         <h3>Iš sąskaitos:</h3>
                     </label>
-                    <select class="form-select" name="from_client_id">
+                    <select class="form-select" name="from_id">
                         <option value="0">Sąskaitų sąrašas</option>
                         @foreach($accounts as $account)
-                        <option value="{{ $account->client_id }}">
+                        <option value="{{ $account->id }}">
                             <tr><i> {{$account->acc_number}} </i> </tr>
                             <tr><b> {{number_format($account->acc_balance, 2, ',', ' ')}} Eur </b></tr>
                             @foreach($clients as $client)
@@ -32,10 +32,10 @@
                     <label class="form-label">
                         <h3>Iš sąskaitos:</h3>
                     </label>
-                    <select class="form-select" name="to_client_id">
+                    <select class="form-select" name="to_id">
                         <option value="0">Sąskaitų sąrašas</option>
                         @foreach($accounts as $account)
-                        <option value="{{ $account->client_id }}">
+                        <option value="{{ $account->id }}">
                             <tr><i> {{$account->acc_number}} </i> </tr>
                             <tr><b> {{number_format($account->acc_balance, 2, ',', ' ')}} Eur </b></tr>
                             @foreach($clients as $client)

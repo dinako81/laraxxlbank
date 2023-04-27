@@ -122,9 +122,13 @@ class FundsController extends Controller
 
     public function transfer(Request $request)
 
-    {       $validator = Validator::make($request->all(), [
-            'from_client_id' => 'required',
-            'to_client_id' => 'required',
+    {     
+        //  dump($request->from_id);
+        // die;
+        
+        $validator = Validator::make($request->all(), [
+            'from_id' => 'required',
+            'to_id' => 'required',
             'acc_balance' => 'required|numeric|min:0.01'
         ]);
     
@@ -135,15 +139,15 @@ class FundsController extends Controller
                 ->withInput();
         }
     
-        $fromAccount = Account::findOrFail($request->from_client_id);
-        $toAccount = Account::findOrFail($request->to_client_id);
+        $fromAccount = Account::findOrFail($request->from_id);
+        $toAccount = Account::findOrFail($request->to_id);
     
-        if ($fromAccount->acc_balance < $request->acc_balance) {
-            return redirect()
-                ->back()
-                ->withErrors(['warn' => 'Nepakankamas likutis'])
-                ->withInput();
-        }
+        // if ($fromAccount->acc_balance < $request->acc_balance) {
+        //     return redirect()
+        //         ->back()
+        //         ->withErrors(['warn' => 'Nepakankamas likutis'])
+        //         ->withInput();
+        // }
     
         $fromAccount->acc_balance -= $request->acc_balance;
         $toAccount->acc_balance += $request->acc_balance;
